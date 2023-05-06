@@ -45,5 +45,6 @@ public partial class MainPage : ContentPage
 	{
 		Username.Background = Colors.White;
 	}
+
 }
 
