@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="A_Chess_App.Register"
+             Title="Register">
+    <VerticalStackLayout>
+
+        <Entry x:Name="Username"
+       Placeholder="Enter a Username"
+               Text=""
+               TextChanged="OnUsernameChanged"
+        />
+
+        <Entry x:Name="Password"
+       Placeholder="Enter a Password"
+               Text=""
+               TextChanged="OnPasswordChanged"
+       />
+        
+        <Entry x:Name="PasswordAgain"
+       Placeholder="Enter a Password Again"
+               Text=""
+               TextChanged="OnPasswordAgainChanged"
+       />
+
+        <Button
+                x:Name="btnLoginUser"
+                Text="Register"
+                SemanticProperties.Hint="Registers The Player"
+                Clicked="OnRegisterClicked"
+                HorizontalOptions="Center" />
+
+        <Label 
+                    x:Name="lbladvice"
+                    Text=""
+                    HorizontalOptions="Center"/>
+        
+    </VerticalStackLayout>
+</ContentPage>

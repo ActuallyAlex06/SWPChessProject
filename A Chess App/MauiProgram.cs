@@ -1,4 +1,6 @@
-﻿namespace A_Chess_App;
+﻿using System;
+
+namespace A_Chess_App;
 
 public static class MauiProgram
 {
@@ -13,6 +15,7 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
+		SQLCommunication.CreateSql();
 		return builder.Build();
 	}
 }
