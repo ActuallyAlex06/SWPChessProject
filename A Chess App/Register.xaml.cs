@@ -33,7 +33,7 @@ public partial class Register : ContentPage
         else
         {
             SQLCommunication.CreateUser(username, password);
-            //Open Chessbard Page
+            App.Current.MainPage = new NavigationPage(new Chessboard());
         }
     }
 

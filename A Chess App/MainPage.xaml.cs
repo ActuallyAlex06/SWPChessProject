@@ -27,8 +27,8 @@ public partial class MainPage : ContentPage
 			Password.Background = Colors.Red;
         } else
 		{
-			//DoLogin();
-		}
+            App.Current.MainPage = new NavigationPage(new Chessboard());
+        }
 	}
 
     private void OnRegisterClicked(object sender, EventArgs e)
