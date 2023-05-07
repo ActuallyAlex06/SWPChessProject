@@ -9,6 +9,7 @@ public partial class Chessboard : ContentPage
 
 	public void FieldClicked(object sender, EventArgs e)
 	{
-		//fancy stuff
+		Button btnonboard = sender as Button;
+		
 	}
 }
