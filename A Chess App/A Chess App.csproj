@@ -66,7 +66,9 @@
 	  <MauiXaml Update="Chessboard.xaml">
 
 	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
+		</MauiXam>
+		</MauiXaml>
+
 	</ItemGroup>
 
 </Project>
