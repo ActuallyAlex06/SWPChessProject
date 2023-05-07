@@ -14,6 +14,7 @@ namespace A_Chess_App
 
         public static void CreateSql()
         {
+            conn.Close();
             if (!CheckDatabaseExists())
             {
                 conn.Close();
