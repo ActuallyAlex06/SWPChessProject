@@ -7,14 +7,36 @@ public partial class Chessboard : ContentPage
 		InitializeComponent();
 	}
 
-	
+    string figure = " ";
 
 	public void FieldClicked(object sender, EventArgs e)
 	{
 		Button btnonboard = sender as Button;
-
+        
+        if (btnonboard.ImageSource != null)
+        {
+           if (figure != " ")
+           {
+                btn
+           } 
+           else
+           {
+                figure = GetOnlyPath(btnonboard.ImageSource.ToString());
+                btnonboard.ImageSource = "";
+           }
+        } else 
+        {
+            btnonboard.ImageSource = figure;
+            figure = " ";
+        }
 	
 	}
+
+    private string GetOnlyPath(string path)
+    {
+        string[] onlypath = path.Split(":");
+        return onlypath[1];
+    }
 
 	public void StartGame(object sender, EventArgs e)
 	{
