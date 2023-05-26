@@ -1,5 +1,7 @@
 
 using Microsoft.Maui.Controls.Internals;
+using Network;
+using System.Transactions;
 
 namespace A_Chess_App;
 
@@ -9,39 +11,42 @@ public partial class Chessboard : ContentPage
 	{
 		InitializeComponent();
 	}
-    string MoveFigure = " ";
-    string Coordinates = " ";
-    static string whoseturn = "b";
+    string moveFigure = " ";
+    string coordinates = " ";
+    static string whoIsTurn = "b";
     List<string> possiblemoves = new List<string> { };
+    List<Button> lstButtons;
 
-	public void FieldClicked(object sender, EventArgs e)
+    public void FieldClicked(object sender, EventArgs e)
 	{
         Button btnclicked = sender as Button;
         possiblemoves.Clear();
-        if (MoveFigure.Equals(" "))
+        if (moveFigure.Equals(" "))
         {
             if (btnclicked.ImageSource != null)
             {
                 if (CheckTurn(GetOnlyPath(btnclicked.ImageSource.ToString())))
                 {              
-                    MoveFigure = GetOnlyPath(btnclicked.ImageSource.ToString());
-                    Coordinates = btnclicked.Text;
+                    moveFigure = GetOnlyPath(btnclicked.ImageSource.ToString());
+                    coordinates = btnclicked.Text;
                     btnclicked.ImageSource = " ";
+                    IsPossible(btnclicked);
                 }
             }
         }
 	    else 
         {
-            FigureAllPossibleMoves(MoveFigure);
+            lstButtons = GetAllFields();
+            FigureAllPossibleMoves(moveFigure);
             if (possiblemoves.Contains(btnclicked.Text))
             {
-                btnclicked.ImageSource = MoveFigure;
-                MoveFigure = " ";
+                btnclicked.ImageSource = moveFigure;
+                moveFigure = " ";
 
-                if (btnclicked.Text != Coordinates)
+                if (btnclicked.Text != coordinates)
                 {
                     UpdateTurn();
-                    Coordinates = " ";
+                    coordinates = " ";
                 }
             }
         }
@@ -49,7 +54,7 @@ public partial class Chessboard : ContentPage
 
     private void FigureAllPossibleMoves(string piece)
     { 
-        string[] specificlocation = Coordinates.Split(' ');
+        string[] specificlocation = coordinates.Split(' ');
 
         if (piece.Equals("pawnb.png"))
         {
@@ -189,15 +194,19 @@ public partial class Chessboard : ContentPage
 
     private void UpdateTurn()
     {
-        if (whoseturn.Equals("b")) { whoseturn = "w"; }
-        else  { whoseturn = "b"; }
+        if (whoIsTurn.Equals("b")) { whoIsTurn = "w"; }
+        else  { whoIsTurn = "b"; }
     }
 
     private bool CheckTurn(string source)
     {
         string[] ender = source.Split(".");
-        if (ender[0].EndsWith(whoseturn)) { return true; }
-        else { return false; }
+        if (ender[0].EndsWith(whoIsTurn)) { 
+            return true; 
+        }
+        else { 
+            return false; 
+        }
     }
 
     private string GetOnlyPath(string path)
@@ -245,5 +254,54 @@ public partial class Chessboard : ContentPage
         H7.ImageSource = "pawnb.png";
 
         btnstart.IsVisible = false;
+    }
+
+    bool IsPossible(Button currentbutton)
+    {
+       
+
+        if (currentbutton.ImageSource.ToString() == "pawnb.png")
+        {
+            foreach (Button btn in lstButtons)
+            {
+                foreach (string move in possiblemoves)
+                {
+                    if (btn.ImageSource.ToString() == move) { possiblemoves[possiblemoves.IndexOf(move)] = "0 0"; }
+                    DeleteAllFollowingMoves();
+                }
+            }
+
+            
+        }
+
+        return true;
+    }
+
+    public List<Button> GetAllFields()
+    {
+        List<Button> li = new List<Button>();
+        foreach (var x in board)
+        {
+            if (x is Button)
+            {
+                li.Add((Button)x);
+            }
+        }
+        return li;
+    }
+
+    public void DeleteAllFollowingMoves()
+    {
+       
+        foreach (string move in possiblemoves)
+        {
+            string[] coords = move.Split(' ');
+            List<int> lstIndexes = new List<int> { };
+
+            if (move == "0 0")
+            {
+                
+            }
+        }
     }
 }
