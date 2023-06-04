@@ -321,9 +321,24 @@ public partial class Chessboard : ContentPage
             y = int.Parse(coordinates[1].ToString()) + 1;
         else
             y = int.Parse(coordinates[1].ToString()) - 1;
-        if(newX1>0 && !board.FindByName<Button>(aToH[newX1].ToString()+y.ToString()).ImageSource.Equals(" "))
-            possiblemoves.Add(newX1.ToString()+" "+y.ToString());
-        if(newX2 < 9 && !board.FindByName<Button>(aToH[newX2].ToString() + y.ToString()).ImageSource.Equals(" "))
-            possiblemoves.Add(newX2.ToString() + " " + y.ToString());
+        string pX1 = board.FindByName<Button>(aToH[newX1 - 1].ToString() + y.ToString()).ImageSource.ToString();
+        if (newX1>0 && !pX1.Equals(" "))
+        {
+            if((piece.Equals("pawnw.png") && !isWhite(pX1)) || (piece.Equals("pawnw.png") && isWhite(pX1)))
+                possiblemoves.Add(newX1.ToString() + " " + y.ToString());
+        }
+        string pX2 = board.FindByName<Button>(aToH[newX2].ToString() + y.ToString()).ImageSource.ToString();
+        if (newX2 < 9 && pX2.Equals(" "))
+        {
+            if ((piece.Equals("pawnw.png") && !isWhite(pX2)) || (piece.Equals("pawnw.png") && isWhite(pX2)))
+                possiblemoves.Add(newX2.ToString() + " " + y.ToString());
+        }
+    }
+
+    public bool isWhite(string piece)
+    {
+        if (piece[piece.IndexOf(".") - 1].ToString() == "w")
+            return true;
+        return false;
     }
 }
