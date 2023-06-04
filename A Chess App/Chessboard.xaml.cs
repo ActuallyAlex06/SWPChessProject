@@ -1,6 +1,6 @@
 
 using Microsoft.Maui.Controls.Internals;
-using Network;
+//using Network;
 using System.Transactions;
 
 namespace A_Chess_App;
@@ -16,6 +16,7 @@ public partial class Chessboard : ContentPage
     static string whoIsTurn = "b";
     List<string> possiblemoves = new List<string> { };
     List<Button> lstButtons;
+    List<string> aToH = new List<string>() { "A", "B", "C", "D", "E", "F", "G", "H"};
 
     public void FieldClicked(object sender, EventArgs e)
 	{
@@ -58,15 +59,23 @@ public partial class Chessboard : ContentPage
 
         if (piece.Equals("pawnb.png"))
         {
-            if (specificlocation[1].Equals("7")) { possiblemoves.Add(specificlocation[0] + " " + 5); }
+            foreach(Button btn in GetAllFields()) { }
+            int yPlusTwo = int.Parse(specificlocation[1])+2;
+            if (specificlocation[1].Equals("7")) { 
+                possiblemoves.Add(specificlocation[0] + " " + 5); 
+            }
             possiblemoves.Add(specificlocation[0] + " " + BlackPawnMath(specificlocation[1]));
             possiblemoves.Add(specificlocation[0] + " " + specificlocation[1]);
+            pawnHits(piece);
         }
         else if (piece.Equals("pawnw.png"))
         {
-            if (specificlocation[1].Equals("2")) { possiblemoves.Add(specificlocation[0] + " " + 4); }
+            if (specificlocation[1].Equals("2")) { 
+                possiblemoves.Add(specificlocation[0] + " " + 4); 
+            }
             possiblemoves.Add(specificlocation[0] + " " + WhitePawnMath(specificlocation[1]));
             possiblemoves.Add(specificlocation[0] + " " + specificlocation[1]);
+            pawnHits(piece);
         }
         else if (piece.Equals("kingw.png") || piece.Equals("kingb"))
         {
@@ -257,9 +266,7 @@ public partial class Chessboard : ContentPage
     }
 
     bool IsPossible(Button currentbutton)
-    {
-       
-
+    { 
         if (currentbutton.ImageSource.ToString() == "pawnb.png")
         {
             foreach (Button btn in lstButtons)
@@ -303,5 +310,20 @@ public partial class Chessboard : ContentPage
                 
             }
         }
+    }
+    
+    public void pawnHits(string piece)
+    {
+        int newX1 = int.Parse(coordinates.ToString())-1;
+        int newX2 = int.Parse(coordinates.ToString()) + 1;
+        int y;
+        if (piece.Equals("pawnw.png"))
+            y = int.Parse(coordinates[1].ToString()) + 1;
+        else
+            y = int.Parse(coordinates[1].ToString()) - 1;
+        if(newX1>0 && !board.FindByName<Button>(aToH[newX1].ToString()+y.ToString()).ImageSource.Equals(" "))
+            possiblemoves.Add(newX1.ToString()+" "+y.ToString());
+        if(newX2 < 9 && !board.FindByName<Button>(aToH[newX2].ToString() + y.ToString()).ImageSource.Equals(" "))
+            possiblemoves.Add(newX2.ToString() + " " + y.ToString());
     }
 }
