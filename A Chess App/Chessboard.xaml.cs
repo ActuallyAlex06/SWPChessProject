@@ -10,6 +10,7 @@ public partial class Chessboard : ContentPage
 	public Chessboard()
 	{
 		InitializeComponent();
+        ImageSourceNotNull();
 	}
     string moveFigure = " ";
     string coordinates = " ";
@@ -341,8 +342,16 @@ public partial class Chessboard : ContentPage
 
     public bool isWhite(string piece)
     {
-        if (piece[piece.IndexOf(".") - 1].ToString() == "w")
+        if (piece[piece.IndexOf(" ") - 1].ToString() == "w")
             return true;
         return false;
+    }
+
+    public void ImageSourceNotNull()
+    {
+        List<Button> buttons = GetAllFields();
+        foreach(Button btn in buttons) {
+            btn.ImageSource = "";
+        }
     }
 }
