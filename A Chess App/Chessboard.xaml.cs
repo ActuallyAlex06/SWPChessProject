@@ -329,20 +329,21 @@ public partial class Chessboard : ContentPage
         }catch(NullReferenceException nx) { pX1 = ""; }
         if (newX1>0 && !pX1.Equals(" "))
         {
-            if((piece.Equals("pawnw.png") && !isWhite(pX1)) || (piece.Equals("pawnw.png") && isWhite(pX1)))
+            if((piece.Equals("pawnw.png") && !isWhite(pX1)) || (piece.Equals("pawnb.png") && isWhite(pX1)))
                 possiblemoves.Add(newX1.ToString() + " " + y.ToString());
         }
         string pX2 = board.FindByName<Button>(aToH[newX2].ToString() + y.ToString()).ImageSource.ToString();
         if (newX2 < 9 && pX2.Equals(" "))
         {
-            if ((piece.Equals("pawnw.png") && !isWhite(pX2)) || (piece.Equals("pawnw.png") && isWhite(pX2)))
+            if ((piece.Equals("pawnw.png") && !isWhite(pX2)) || (piece.Equals("pawnb.png") && isWhite(pX2)))
                 possiblemoves.Add(newX2.ToString() + " " + y.ToString());
         }
+        lblTest.Text = possiblemoves[possiblemoves.Count - 1].ToString(); 
     }
 
     public bool isWhite(string piece)
     {
-        if (piece[piece.IndexOf(" ") - 1].ToString() == "w")
+        if (piece[piece.IndexOf(".") - 1].ToString() == "w")
             return true;
         return false;
     }

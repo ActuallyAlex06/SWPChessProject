@@ -6,6 +6,9 @@
 
 
     <StackLayout>
+        <Label x:Name="lblTest"
+               TextColor="Black"
+               FontSize="20"/>
         <Grid HorizontalOptions="Center" VerticalOptions="Center" x:Name="board">
 
             <Grid.ColumnDefinitions>
