@@ -314,14 +314,18 @@ public partial class Chessboard : ContentPage
     
     public void pawnHits(string piece)
     {
-        int newX1 = int.Parse(coordinates.ToString())-1;
-        int newX2 = int.Parse(coordinates.ToString()) + 1;
+        int newX1 = int.Parse(coordinates[0].ToString())-1;
+        int newX2 = int.Parse(coordinates[0].ToString()) + 1;
         int y;
         if (piece.Equals("pawnw.png"))
-            y = int.Parse(coordinates[1].ToString()) + 1;
+            y = int.Parse(coordinates[2].ToString()) + 1;
         else
-            y = int.Parse(coordinates[1].ToString()) - 1;
-        string pX1 = board.FindByName<Button>(aToH[newX1 - 1].ToString() + y.ToString()).ImageSource.ToString();
+            y = int.Parse(coordinates[2].ToString()) - 1;
+        string pX1 = "";
+        try
+        {
+            pX1 = board.FindByName<Button>(aToH[newX1 - 1].ToString() + y.ToString()).ImageSource.ToString();
+        }catch(NullReferenceException nx) { pX1 = ""; }
         if (newX1>0 && !pX1.Equals(" "))
         {
             if((piece.Equals("pawnw.png") && !isWhite(pX1)) || (piece.Equals("pawnw.png") && isWhite(pX1)))
