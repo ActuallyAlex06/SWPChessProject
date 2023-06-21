@@ -70,7 +70,7 @@
             <Button x:Name="B5" BackgroundColor="Brown" HeightRequest="75" WidthRequest="75" Grid.Column="1" Grid.Row="4" CornerRadius="0" Clicked="FieldClicked" Text="2 5" TextColor="Brown"/>
             <Button x:Name="C5" BackgroundColor="White" HeightRequest="75" WidthRequest="75" Grid.Column="2" Grid.Row="4" CornerRadius="0" Clicked="FieldClicked" Text="3 5" TextColor="White"/>
             <Button x:Name="D5" BackgroundColor="Brown" HeightRequest="75" WidthRequest="75" Grid.Column="3" Grid.Row="4" CornerRadius="0" Clicked="FieldClicked" Text="4 5" TextColor="Brown"/>
-            <Button x:Name="E5" BackgroundColor="White" HeightRequest="75" WidthRequest="75" Grid.Column="4" Grid.Row="4" CornerRadius="0" Clicked="FieldClicked" Text="5 5" TextColor="Black"/>
+            <Button x:Name="E5" BackgroundColor="White" HeightRequest="75" WidthRequest="75" Grid.Column="4" Grid.Row="4" CornerRadius="0" Clicked="FieldClicked" Text="5 5" TextColor="White"/>
             <Button x:Name="F5" BackgroundColor="Brown" HeightRequest="75" WidthRequest="75" Grid.Column="5" Grid.Row="4" CornerRadius="0" Clicked="FieldClicked" Text="6 5" TextColor="Brown"/>
             <Button x:Name="G5" BackgroundColor="White" HeightRequest="75" WidthRequest="75" Grid.Column="6" Grid.Row="4" CornerRadius="0" Clicked="FieldClicked" Text="7 5" TextColor="White"/>
             <Button x:Name="H5" BackgroundColor="Brown" HeightRequest="75" WidthRequest="75" Grid.Column="7" Grid.Row="4" CornerRadius="0" Clicked="FieldClicked" Text="8 5" TextColor="Brown"/>
