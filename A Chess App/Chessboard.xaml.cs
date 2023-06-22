@@ -340,9 +340,7 @@ public partial class Chessboard : ContentPage
 
     public bool isWhite(string piece)
     {
-        lblTest.Text = piece;
-        if (piece[piece.IndexOf(".") - 1].ToString() == "w")
-            return true;
+        //TODO
         return false;
     }
 
