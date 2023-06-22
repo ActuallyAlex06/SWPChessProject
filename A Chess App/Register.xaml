@@ -5,19 +5,19 @@
              Title="Register">
     <VerticalStackLayout>
 
-        <Entry x:Name="Username"
+        <Entry x:Name="txtUsername"
        Placeholder="Enter a Username"
                Text=""
                TextChanged="OnUsernameChanged"
         />
 
-        <Entry x:Name="Password"
+        <Entry x:Name="txtPassword"
        Placeholder="Enter a Password"
                Text=""
                TextChanged="OnPasswordChanged"
        />
         
-        <Entry x:Name="PasswordAgain"
+        <Entry x:Name="txtPasswordAgain"
        Placeholder="Enter a Password Again"
                Text=""
                TextChanged="OnPasswordAgainChanged"
@@ -31,7 +31,7 @@
                 HorizontalOptions="Center" />
 
         <Label 
-                    x:Name="lbladvice"
+                    x:Name="lblAdvice"
                     Text=""
                     HorizontalOptions="Center"/>
         

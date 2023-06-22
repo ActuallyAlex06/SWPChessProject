@@ -12,36 +12,36 @@ namespace A_Chess_App
         public static SqlConnection conn = new SqlConnection(@"Data Source = (localdb)\MSSQLLocalDB; Integrated Security = true;");
         public static SqlCommand cmd = new SqlCommand("", conn);
 
-        public static void CreateSql()
+        public static void CreateSql() //SQL Database Set Up
         {
             conn.Close();
-            if (!CheckDatabaseExists())
+            if (!CheckDatabaseExists()) //Check if database exists
             {
                 conn.Close();
-                CreateDatabase();
+                CreateDatabase(); //Create the database if it doesn't exist
             }
             else
             {
                 conn.Close();
-                conn.ConnectionString = @"Data Source = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = ChessDatabase;";
+                conn.ConnectionString = @"Data Source = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = ChessDatabase;"; //Set up ConnectionString id database exists
             }
         }
 
-        private static bool CheckDatabaseExists()
+        private static bool CheckDatabaseExists() //Checks if the database exists
         {
             cmd.CommandText = $"SELECT db_id('{"ChessDatabase"}')";
             conn.Open();
             return cmd.ExecuteScalar() != DBNull.Value;
         }
 
-        public static void CreateDatabase()
+        public static void CreateDatabase() //If the database doesn't exist alredy, create it
         {
             #region CreateDatabase
             conn.Open();
             cmd.CommandText = "Create Database ChessDatabase;";
             cmd.ExecuteNonQuery();
             conn.Close();
-            conn.ConnectionString = @"Data Source = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = ChessDatabase;";
+            conn.ConnectionString = @"Data Source = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = ChessDatabase;"; //ConnectionString setup
             #endregion
 
             #region CreateTables
@@ -58,9 +58,9 @@ namespace A_Chess_App
             #endregion
         }
 
-        public static void CreateUser(string name, string pass)
+        public static void CreateUser(string name, string pass) //After registering, create an user with the username and password
         {
-            DateTime currentdate = DateTime.Now;
+            DateTime currentdate = DateTime.Now; //Creationdate
             conn.Close();
             conn.Open();
             cmd.CommandText = "Insert Into Players (Username, Pass, Elo, Gamesplayed, Gameswon, Gameslost, Registerdate, " +
@@ -69,14 +69,14 @@ namespace A_Chess_App
             conn.Close();
         }
 
-        public static int LoginUser(string name, string pass, bool what)
+        public static int LoginUser(string name, string pass, bool usedregister) //Checks if the username and name of a given user exist -> Used for login and register
         {
             conn.Close();
             conn.Open();
             cmd.CommandText = "Select Username, Pass from Players;";
             SqlDataReader read = cmd.ExecuteReader();
 
-            if (what)
+            if (usedregister) //Used for login -> Checks if username and password are the same of an already saved user
             {
                 while (read.Read())
                 {
@@ -87,7 +87,7 @@ namespace A_Chess_App
                 }
                 return -1;
             }
-            if (!what)
+            if (!usedregister) //USed for register -> Checks if a usernae already exists -> Usernames can only be given to one user
             {
                 while (read.Read())
                 {

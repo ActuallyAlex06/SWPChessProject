@@ -106,7 +106,7 @@
             <Button x:Name="H8" BackgroundColor="White" HeightRequest="75" WidthRequest="75" Grid.Column="7" Grid.Row="7" CornerRadius="0" Clicked="FieldClicked" Text="8 8" TextColor="White"/>
 
         </Grid>
-        <Button x:Name="btnstart" BackgroundColor="GreenYellow" HeightRequest="40" WidthRequest="100" CornerRadius="0" Clicked="StartGame" Text="Start Game" TextColor="Black" HorizontalOptions="Center"/>
+        <Button x:Name="btnStart" BackgroundColor="GreenYellow" HeightRequest="40" WidthRequest="100" CornerRadius="0" Clicked="StartGame" Text="Start Game" TextColor="Black" HorizontalOptions="Center"/>
     </StackLayout>
 
 </ContentPage>
