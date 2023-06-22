@@ -315,6 +315,7 @@ public partial class Chessboard : ContentPage
     
     public void pawnHits(string piece)
     {
+    	//TODO not finished yet
         int newX1 = int.Parse(coordinates[0].ToString())-1;
         int newX2 = int.Parse(coordinates[0].ToString()) + 1;
         int y;
