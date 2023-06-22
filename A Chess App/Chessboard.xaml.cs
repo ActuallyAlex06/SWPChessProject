@@ -323,10 +323,8 @@ public partial class Chessboard : ContentPage
         else
             y = int.Parse(coordinates[2].ToString()) - 1;
         string pX1 = "";
-        try
-        {
-            pX1 = board.FindByName<Button>(aToH[newX1 - 1].ToString() + y.ToString()).ImageSource.ToString();
-        }catch(NullReferenceException nx) { pX1 = ""; }
+
+        pX1 = board.FindByName<Button>(aToH[newX1 - 1].ToString() + y.ToString()).ImageSource.ToString();
         if (newX1>0 && !pX1.Equals(" "))
         {
             if((piece.Equals("pawnw.png") && !isWhite(pX1)) || (piece.Equals("pawnb.png") && isWhite(pX1)))
@@ -338,11 +336,11 @@ public partial class Chessboard : ContentPage
             if ((piece.Equals("pawnw.png") && !isWhite(pX2)) || (piece.Equals("pawnb.png") && isWhite(pX2)))
                 possiblemoves.Add(newX2.ToString() + " " + y.ToString());
         }
-        lblTest.Text = possiblemoves[possiblemoves.Count - 1].ToString(); 
     }
 
     public bool isWhite(string piece)
     {
+        lblTest.Text = piece;
         if (piece[piece.IndexOf(".") - 1].ToString() == "w")
             return true;
         return false;
